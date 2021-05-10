@@ -8,24 +8,21 @@ using System.IO;
 namespace A888781.Actividad03
 {
     class Diario
-    {
-        
-    }
+    { }
     namespace A873263.Actividad03
     {
         class Diario
         {
-            const string diario = "Diario.txt";
             public int NroAsiento { get; set; }
             public DateTime Fecha { get; set; }
             public int CodigoCuenta { get; set; }
             public decimal Debe { get; set; }
             public decimal Haber { get; set; }
             public string Linea { get; }
-            public Diario()
-            {
-            }
 
+            const string diario = "Diario.txt";
+            public Diario()
+            { }
             public Diario(int Nro, DateTime Fecha, int CodigoCuenta, decimal Debe, decimal Haber)
             {
                 NroAsiento = Nro;
@@ -34,9 +31,9 @@ namespace A888781.Actividad03
                 this.Debe = Debe;
                 this.Haber = Haber;
             }
-            public Diario(string linea)
+            public Diario(string barra)
             {
-                var datos = linea.Split('|');
+                var datos = barra.Split('|');
                 NroAsiento = int.Parse(datos[0]);
                 Fecha = DateTime.Parse(datos[1]);
                 CodigoCuenta = int.Parse(datos[2]);
@@ -56,8 +53,8 @@ namespace A888781.Actividad03
                 diario.NroAsiento = Ingresarasiento();
                 diario.Fecha = IngresarFecha("Ingrese la fecha");
                 diario.CodigoCuenta = IngresarCuenta();
-                //diario.Debe = Ingresardebe();
-                //diario.Haber = Ingresarhaber();
+                diario.Debe = Ingresardebe();
+                diario.Haber = Ingresarhaber();
 
                 return diario;
 
@@ -77,7 +74,7 @@ namespace A888781.Actividad03
                 var titulo = "Ingrese el Número de asiento";
                 if (!obligatorio)
                 {
-                    titulo += " o presione [Enter] para continuar";
+                    titulo += " o presione Enter para continuar";
                 }
 
                 do
@@ -91,13 +88,13 @@ namespace A888781.Actividad03
 
                     if (!int.TryParse(ingreso, out var NroAsiento))
                     {
-                        Console.WriteLine("No ha ingresado un número válido");
+                        Console.WriteLine("No ha ingresado un número válido.");
                         continue;
                     }
 
                     if (NroAsiento < 1)
                     {
-                        Console.WriteLine("Debe ser un número mayor a 1");
+                        Console.WriteLine("Debe ser un número mayor a 1.");
                         continue;
                     }
                     if (Diario.Existe(NroAsiento))
@@ -197,10 +194,53 @@ namespace A888781.Actividad03
                 } while (true);
 
             }
-            
+            private static decimal Ingresardebe(bool obligatorio = true)
+            {
+                decimal debe = 0;
+                Console.WriteLine("Ingrese D-para saldo deudor-");
+                var tecla = Console.ReadKey(intercept: true);
+                if (tecla.Key == ConsoleKey.D)
+                {
+                    Console.WriteLine("Debe");
+                    var eleccion = Console.ReadLine();
+                    if (!decimal.TryParse(eleccion, out debe))
+                    {
+                        Console.WriteLine("El importe debe ser númerico.");
+                        continue;
+                    }
+                    else if (debe < 0)
+                    {
+                        Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                        continue;
+                    }
+                }
+            }
+            private static decimal Ingresarhaber(bool obligatorio = true)
+            {
+                decimal haber = 0;
+                Console.WriteLine("Ingrese H-para saldo acreedor-");
+                var tecla = Console.ReadKey(intercept: true);
+                if (tecla.Key == ConsoleKey.D)
+                {
+                    Console.WriteLine("Debe");
+                    var eleccion = Console.ReadLine();
+                    if (!decimal.TryParse(eleccion, out haber))
+                    {
+                        Console.WriteLine("El importe debe ser númerico.");
+                        continue;
+                    }
+                    else if (haber < 0)
+                    {
+                        Console.WriteLine("El importe debe ser mayor o igual a cero.");
+                        continue;
+                    }
+                }
 
+
+
+            }
         }
+
     }
-    
 }
 
