@@ -128,17 +128,17 @@ namespace A888781.Actividad03
                         return DateTime.MinValue;
                     }
 
-                    if (!DateTime.TryParse(ingreso, out DateTime fechaNacimiento))
+                    if (!DateTime.TryParse(ingreso, out DateTime Fecha))
                     {
                         Console.WriteLine("No es una fecha válida");
                         continue;
                     }
-                    if (fechaNacimiento > DateTime.Now)
+                    if (Fecha> DateTime.Now)
                     {
                         Console.WriteLine("La fecha debe ser menor a la actual");
                         continue;
                     }
-                    return fechaNacimiento;
+                    return Fecha;
 
                 } while (true);
             }
