@@ -232,7 +232,7 @@ namespace A888781.Actividad03
                         while (!reader.EndOfStream)
                         {
                             var linea = reader.ReadLine();
-                            if (linea == "NroAsiento|CodigoCuenta|Fecha|Debe|Haber")
+                            if (linea == "NroAsiento|Fecha|CodigoCuenta|Debe|Haber")
                             {
                                 continue;
                             }
