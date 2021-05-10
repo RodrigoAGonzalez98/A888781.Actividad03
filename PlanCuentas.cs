@@ -40,22 +40,23 @@ namespace A888781.Actividad03
             Nombre = datos[1];
             Tipo = datos[2];
         }
-        private bool Buscar(int unCodigo)
+        private bool Buscar(int Codigo)
         {
-            int posicion = 0;
-            bool encontrado = false;
-            while (posicion < plan.Count && !encontrado)
+            
+            bool bus = false;
+            int pos = 0;
+            while (pos < plan.Count && !bus)
             {
-                if (plan[posicion].Codigo == unCodigo)
+                if (plan[pos].Codigo == Codigo)
                 {
-                    encontrado = true;
+                    bus = true;
                 }
                 else
                 {
-                    posicion++;
+                    pos++;
                 }
             }
-            return encontrado;
+            return bus;
         }
     }
 }

@@ -8,7 +8,9 @@ using System.IO;
 namespace A888781.Actividad03
 {
     class Diario
-    { }
+    {
+        
+    }
     namespace A873263.Actividad03
     {
         class Diario
@@ -42,7 +44,11 @@ namespace A888781.Actividad03
                 Haber = decimal.Parse(datos[4]);
             }
             public string ObtenerLineaDatos() => $"{NroAsiento};{Fecha};{CodigoCuenta};{Debe};{Haber}";
-            public Diario IngresarNuevo()
+            /*public Diario IngresarNuevo()
+            {
+                
+            }*/
+            internal Diario IngresarNuevo()
             {
                 var diario = new Diario();
                 Console.WriteLine("Nuevo asiento");
@@ -54,6 +60,7 @@ namespace A888781.Actividad03
                 //diario.Haber = Ingresarhaber();
 
                 return diario;
+
             }
             public void Mostrar()
             {
