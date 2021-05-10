@@ -42,7 +42,6 @@ namespace A888781.Actividad03
         }
         private bool Buscar(int Codigo)
         {
-            
             bool bus = false;
             int pos = 0;
             while (pos < plan.Count && !bus)

@@ -12,9 +12,8 @@ namespace A888781.Actividad03
         static void Main(string[] args)
         {
             Diario diario = new Diario();
-            diario.IngresarNuevo();
+            diario.Check()
             Console.ReadLine();
-
         }
     }
 }

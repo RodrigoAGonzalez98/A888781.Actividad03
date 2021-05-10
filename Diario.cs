@@ -41,23 +41,16 @@ namespace A888781.Actividad03
                 Haber = decimal.Parse(datos[4]);
             }
             public string ObtenerLineaDatos() => $"{NroAsiento};{Fecha};{CodigoCuenta};{Debe};{Haber}";
-            /*public Diario IngresarNuevo()
-            {
-                
-            }*/
             internal Diario IngresarNuevo()
             {
                 var diario = new Diario();
                 Console.WriteLine("Nuevo asiento");
-
                 diario.NroAsiento = Ingresarasiento();
                 diario.Fecha = IngresarFecha("Ingrese la fecha");
                 diario.CodigoCuenta = IngresarCuenta();
                 diario.Debe = Ingresardebe();
                 diario.Haber = Ingresarhaber();
-
                 return diario;
-
             }
             public void Mostrar()
             {
@@ -117,12 +110,6 @@ namespace A888781.Actividad03
             {
                 throw new NotImplementedException();
             }
-            /*
-            public Diario(string linea)
-            {
-                
-            }
-            */
             private static DateTime IngresarFecha(string titulo, bool obligatorio = true)
             {
                 do
@@ -235,12 +222,31 @@ namespace A888781.Actividad03
                         continue;
                     }
                 }
-
-
-
+            }
+            public void Check()
+            {
+                if (File.Exists(diario))
+                {
+                    using (var reader = new StreamReader(diario))
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            var linea = reader.ReadLine();
+                            if (linea == "NroAsiento|CodigoCuenta|Fecha|Debe|Haber")
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                var ddiario = new Diario(linea);
+                                diario.Add(ddiario);
+                            }
+                        }
+                    }
+                }
             }
         }
-
     }
 }
+
 
